@@ -29,9 +29,9 @@ No incluye entrenamiento del modelo ni lógica del API.
 
 Este frontend forma parte de una arquitectura modular:
 
-- 🤖 Repositorio del Modelo → Entrenamiento y métricas ()
-- 🚀 API → Inferencias del modelo ()
-- 🎨 Frontend () → Interfaz visual
+- 🤖 Repositorio del Modelo → Entrenamiento y métricas (https://github.com/camilodev404/WaterPotability)
+- 🚀 API → Inferencias del modelo (https://github.com/camilodev404/WaterPotability-ms)
+- 🎨 Frontend (https://github.com/camilodev404/WaterPotability-dashboard) → Interfaz visual
 
 El sistema tendrá **dos vistas principales**:
 
