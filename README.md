@@ -19,7 +19,7 @@ No incluye entrenamiento del modelo ni lógica del API.
 # 👥 Integrantes del Proyecto
 
 - Cristian Camilo Nino Rincon
-- Nombre Apellido
+- Sandra Milena Pantoja Cárdenas
 - Nombre Apellido
 - Nombre Apellido
 
