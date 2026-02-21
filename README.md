@@ -20,7 +20,7 @@ No incluye entrenamiento del modelo ni lógica del API.
 
 - Cristian Camilo Nino Rincon
 - Sandra Milena Pantoja Cárdenas
-- Nombre Apellido
+- Yeisson Andres Galindo
 - Nombre Apellido
 
 ---
