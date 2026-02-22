@@ -1,0 +1,82 @@
+<div class="metricas-page">
+  <a class="back-button" routerLink="/">← Volver</a>
+
+  <div class="metricas-container">
+    <h1 class="metricas-title">Métricas</h1>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <div class="charts-grid" *ngIf="metrics">
+      <div class="chart-card">
+        <h3 class="chart-title">Rendimiento del Modelo</h3>
+        <div class="chart-wrapper">
+          <svg viewBox="0 0 520 320" class="performance-chart" role="img" aria-label="Grafica de rendimiento del modelo">
+            <defs>
+              <linearGradient id="metricGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#667eea"></stop>
+                <stop offset="100%" stop-color="#764ba2"></stop>
+              </linearGradient>
+            </defs>
+            <line x1="35" y1="30" x2="35" y2="250" class="axis"></line>
+            <line x1="35" y1="250" x2="490" y2="250" class="axis"></line>
+
+            <line x1="35" y1="195" x2="490" y2="195" class="grid"></line>
+            <line x1="35" y1="140" x2="490" y2="140" class="grid"></line>
+            <line x1="35" y1="85" x2="490" y2="85" class="grid"></line>
+            <line x1="35" y1="30" x2="490" y2="30" class="grid"></line>
+
+            <text x="22" y="254" class="tick-label">0.0</text>
+            <text x="22" y="199" class="tick-label">0.25</text>
+            <text x="22" y="144" class="tick-label">0.5</text>
+            <text x="22" y="89" class="tick-label">0.75</text>
+            <text x="22" y="34" class="tick-label">1.0</text>
+
+            <g *ngFor="let bar of performanceBars; let i = index">
+              <rect
+                [attr.x]="barX(i)"
+                [attr.y]="barY(bar.value)"
+                width="58"
+                [attr.height]="barHeight(bar.value)"
+                rx="10"
+                class="bar"
+              ></rect>
+              <text [attr.x]="barX(i) + 29" [attr.y]="barY(bar.value) - 8" class="bar-value">
+                {{ bar.value | number: '1.2-3' }}
+              </text>
+              <text [attr.x]="barX(i) + 29" y="280" class="bar-label">{{ bar.label }}</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-title">Detalle del Modelo</h3>
+        <div class="metrics-detail">
+          <div class="detail-row">
+            <span>Model ID</span>
+            <strong>{{ metrics.model_id }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Versión</span>
+            <strong>{{ metrics.model_version }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Accuracy</span>
+            <strong>{{ metrics.accuracy | percent: '1.2-2' }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Precision</span>
+            <strong>{{ metrics.precision | percent: '1.2-2' }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Recall</span>
+            <strong>{{ metrics.recall | percent: '1.2-2' }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>F1 Score</span>
+            <strong>{{ metrics.f1_score | percent: '1.2-2' }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

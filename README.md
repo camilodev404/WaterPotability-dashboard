@@ -1,12 +1,11 @@
-# 🎨 Water Potability Frontend (Angular Dashboard)
+# Water Potability Dashboard (Angular)
 
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Angular](https://img.shields.io/badge/Angular-Frontend-red)
-![UI](https://img.shields.io/badge/UI-Simple%20%26%20Clean-blue)
+Frontend Angular para visualizar metricas del modelo y realizar predicciones consumiendo la API.
 
-Aplicación frontend desarrollada en **Angular** para interactuar con el sistema de predicción de potabilidad del agua.
+## Requisitos
 
-El objetivo del frontend es ser:
+- Node.js 18+
+
 
 ✅ Simple  
 ✅ Fácil de usar  
@@ -153,8 +152,21 @@ export const environment = {
 };
 
 # 🚀 Instalación
+=======
+## Ejecutar en local
+>>>>>>> 8a5e55c4 (first version)
 
 ```bash
-git clone <repo-url>
-cd <repo>
 npm install
+npm start
+```
+
+El dashboard levanta en `http://localhost:4200` y usa `proxy.conf.json` para enrutar `/api` a `http://localhost:8000`.
+
+## Build de produccion
+
+```bash
+npm run build
+```
+
+Salida en `dist/waterpotability-dashboard/browser`.

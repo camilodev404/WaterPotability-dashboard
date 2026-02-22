@@ -1,0 +1,25 @@
+<div *ngIf="isOpen" class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="onClose()">×</button>
+
+    <div class="result-icon" [class.potable]="isPotable" [class.no-potable]="!isPotable">
+      {{ isPotable ? '✓' : '✗' }}
+    </div>
+
+    <h2 class="modal-title">{{ isPotable ? 'Agua Potable' : 'Agua No Potable' }}</h2>
+
+    <p class="modal-message">
+      {{
+        isPotable
+          ? 'El agua analizada cumple con los estándares de calidad para consumo humano.'
+          : 'El agua analizada NO cumple con los estándares de calidad para consumo humano.'
+      }}
+    </p>
+
+    <div class="status-badge" [class.potable]="isPotable" [class.no-potable]="!isPotable">
+      {{ isPotable ? 'APTA PARA CONSUMO' : 'NO APTA PARA CONSUMO' }}
+    </div>
+
+    <button class="modal-button" (click)="onClose()">Cerrar</button>
+  </div>
+</div>

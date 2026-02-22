@@ -1,0 +1,27 @@
+.result {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--surface);
+  border-left: 6px solid #8ea6ba;
+  box-shadow: 0 8px 20px rgba(13, 43, 66, 0.08);
+}
+
+.result.success {
+  border-left-color: var(--success);
+}
+
+.result.danger {
+  border-left-color: var(--danger);
+}
+
+.label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 8px 0 4px;
+}
+
+.value {
+  margin: 0;
+  color: var(--muted);
+}

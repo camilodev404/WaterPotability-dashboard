@@ -1,0 +1,77 @@
+<div class="predicciones-page">
+  <a class="back-button" routerLink="/">← Volver</a>
+
+  <div class="predicciones-container">
+    <h1 class="predicciones-title">Predicción de Potabilidad</h1>
+
+    <div class="form-card">
+      <div class="form-grid" [formGroup]="form">
+        <div class="form-group">
+          <label>pH</label>
+          <input type="number" formControlName="ph" placeholder="Ingrese pH" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Hardness</label>
+          <input type="number" formControlName="Hardness" placeholder="Ingrese dureza" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Solids</label>
+          <input type="number" formControlName="Solids" placeholder="Ingrese sólidos" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Chloramines</label>
+          <input type="number" formControlName="Chloramines" placeholder="Ingrese cloraminas" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Sulfate</label>
+          <input type="number" formControlName="Sulfate" placeholder="Ingrese sulfato" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Conductivity</label>
+          <input type="number" formControlName="Conductivity" placeholder="Ingrese conductividad" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label>Organic Carbon</label>
+          <input
+            type="number"
+            formControlName="Organic_carbon"
+            placeholder="Ingrese carbono orgánico"
+            step="0.01"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Trihalomethanes</label>
+          <input
+            type="number"
+            formControlName="Trihalomethanes"
+            placeholder="Ingrese trihalometanos"
+            step="0.01"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Turbidity</label>
+          <input type="number" formControlName="Turbidity" placeholder="Ingrese turbidez" step="0.01" />
+        </div>
+      </div>
+
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="buttons-container">
+        <button class="predict-button" (click)="handlePredict()" [disabled]="loading">
+          {{ loading ? 'Prediciendo...' : 'Predecir' }}
+        </button>
+        <button class="clear-button" (click)="handleClear()" [disabled]="loading">Limpiar</button>
+      </div>
+    </div>
+  </div>
+
+  <app-result-modal [isOpen]="modalOpen" [isPotable]="isPotable" (close)="closeModal()"></app-result-modal>
+</div>

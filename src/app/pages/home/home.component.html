@@ -1,0 +1,31 @@
+<div class="home">
+  <div class="home-header">
+    <div class="header-top">
+      <img src="assets/logo-uniandes.png" alt="Logo Universidad de los Andes" class="university-logo" />
+      <div class="title-container">
+        <h1 class="home-title">PREDICCIÓN DE LA POTABILIDAD DEL AGUA USANDO MACHINE LEARNING</h1>
+      </div>
+    </div>
+    <div class="home-subtitle">Sistema de Análisis y Predicción</div>
+  </div>
+
+  <div class="cards-container">
+    <app-navigation-card
+      *ngFor="let card of navCards"
+      [title]="card.title"
+      [icon]="card.icon"
+      [route]="card.route"
+    ></app-navigation-card>
+  </div>
+
+  <div class="members-section">
+    <h2 class="members-title">Integrantes</h2>
+    <div class="members-container">
+      <app-member-card
+        *ngFor="let member of members"
+        [name]="member.name"
+        [avatar]="member.avatar"
+      ></app-member-card>
+    </div>
+  </div>
+</div>
