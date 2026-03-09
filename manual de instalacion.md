@@ -4,13 +4,10 @@
 Este manual explica cómo instalar y ejecutar el tablero (`WaterPotability-dashboard`) junto con la API y los modelos usando Docker Compose.
 
 ## 2. ¿Cuántos repositorios necesito?
-Para ejecutar el `docker-compose.yml` de este repositorio **sin cambios**, necesitas clonar **3 repositorios** en la misma carpeta padre:
+Para ejecutar el `docker-compose.yml` de este repositorio **sin cambios**, necesitas clonar **2 repositorios** en la misma carpeta padre:
 
-1. `WaterPotability` (datos y artefactos de entrenamiento)
-2. `WaterPotability-ms` (API FastAPI)
-3. `WaterPotability-dashboard` (frontend Angular)
-
-La razón: el build de la API usa archivos del repositorio `WaterPotability` (modelos y dataset para métricas).
+1. `WaterPotability-ms` (API FastAPI + modelos + dataset de métricas)
+2. `WaterPotability-dashboard` (frontend Angular)
 
 ## 3. Prerrequisitos
 - Docker Desktop o Docker Engine + Docker Compose (v2)
@@ -22,7 +19,6 @@ Debes tener algo así:
 
 ```text
 workspace/
-  WaterPotability/
   WaterPotability-ms/
   WaterPotability-dashboard/
 ```
@@ -32,7 +28,6 @@ Desde la carpeta `workspace`:
 
 ```bash
 git clone https://github.com/camilodev404/WaterPotability-dashboard.git
-git clone https://github.com/camilodev404/WaterPotability.git
 git clone https://github.com/camilodev404/WaterPotability-ms.git
 ```
 
@@ -58,7 +53,7 @@ docker compose down
 
 ## 9. Problemas comunes
 ### 9.1 El build de API falla por archivos no encontrados
-Valida que los 3 repositorios estén en la estructura esperada (misma carpeta padre).
+Valida que los 2 repositorios estén en la estructura esperada (misma carpeta padre).
 
 ### 9.2 Puerto ocupado
 Cierra procesos en `4200` o `8000`, o cambia puertos en `docker-compose.yml`.
@@ -70,10 +65,10 @@ Verifica que `api` esté healthy:
 docker compose ps
 ```
 
-## 10. ¿Se puede correr solo con 2 repositorios?
-Sí, pero no con este compose tal cual.
-Necesitarías adaptar build/config de API para no depender de `WaterPotability` y copiar manualmente:
-- dataset de métricas
-- artefactos de ambos modelos
+## 10. ¿Se puede correr con un solo repositorio?
+No para esta arquitectura completa.
+Necesitas mínimo:
+- `WaterPotability-ms`
+- `WaterPotability-dashboard`
 
-Para uso estándar del proyecto, la opción recomendada es usar los **3 repositorios**.
+El repositorio `WaterPotability` queda opcional para entrenamiento/experimentación, pero no es requerido para levantar frontend + API en Docker.

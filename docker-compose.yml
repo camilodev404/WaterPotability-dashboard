@@ -12,10 +12,8 @@ services:
       MODEL_PATH: /app/models/water_potability_model
       MODEL_PATH_NN: /app/models/water_potability_model_nn
       DEFAULT_MODEL_NAME: decision_tree
-      METRICS_CSV_PATH: /data/raw/water_potability.csv
+      METRICS_CSV_PATH: /app/data/raw/water_potability.csv
       CORS_ORIGINS: '["http://localhost:4200"]'
-    volumes:
-      - ../WaterPotability/data/raw:/data/raw:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
       interval: 20s
