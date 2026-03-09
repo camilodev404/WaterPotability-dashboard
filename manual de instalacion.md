@@ -31,9 +31,9 @@ workspace/
 Desde la carpeta `workspace`:
 
 ```bash
-git clone <URL-REPO-WaterPotability>
-git clone <URL-REPO-WaterPotability-ms>
-git clone <URL-REPO-WaterPotability-dashboard>
+git clone https://github.com/camilodev404/WaterPotability-dashboard.git
+git clone https://github.com/camilodev404/WaterPotability.git
+git clone https://github.com/camilodev404/WaterPotability-ms.git
 ```
 
 ## 6. Levantar todo con Docker Compose
