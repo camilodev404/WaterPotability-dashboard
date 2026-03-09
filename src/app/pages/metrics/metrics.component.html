@@ -6,8 +6,8 @@
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 
     <div class="charts-grid" *ngIf="metrics">
-      <div class="chart-card">
-        <h3 class="chart-title">Rendimiento del Modelo</h3>
+      <div class="chart-card" *ngFor="let modelMetrics of metrics.models">
+        <h3 class="chart-title">Rendimiento - {{ modelLabel(modelMetrics.model_name) }}</h3>
         <div class="chart-wrapper">
           <svg viewBox="0 0 520 320" class="performance-chart" role="img" aria-label="Grafica de rendimiento del modelo">
             <defs>
@@ -30,7 +30,7 @@
             <text x="22" y="89" class="tick-label">0.75</text>
             <text x="22" y="34" class="tick-label">1.0</text>
 
-            <g *ngFor="let bar of performanceBars; let i = index">
+            <g *ngFor="let bar of performanceBars(modelMetrics); let i = index">
               <rect
                 [attr.x]="barX(i)"
                 [attr.y]="barY(bar.value)"
@@ -46,34 +46,35 @@
             </g>
           </svg>
         </div>
-      </div>
 
-      <div class="chart-card">
-        <h3 class="chart-title">Detalle del Modelo</h3>
         <div class="metrics-detail">
           <div class="detail-row">
+            <span>Modelo</span>
+            <strong>{{ modelLabel(modelMetrics.model_name) }}</strong>
+          </div>
+          <div class="detail-row">
             <span>Model ID</span>
-            <strong>{{ metrics.model_id }}</strong>
+            <strong>{{ modelMetrics.model_id }}</strong>
           </div>
           <div class="detail-row">
             <span>Versión</span>
-            <strong>{{ metrics.model_version }}</strong>
+            <strong>{{ modelMetrics.model_version }}</strong>
           </div>
           <div class="detail-row">
             <span>Accuracy</span>
-            <strong>{{ metrics.accuracy | percent: '1.2-2' }}</strong>
+            <strong>{{ modelMetrics.accuracy | percent: '1.2-2' }}</strong>
           </div>
           <div class="detail-row">
             <span>Precision</span>
-            <strong>{{ metrics.precision | percent: '1.2-2' }}</strong>
+            <strong>{{ modelMetrics.precision | percent: '1.2-2' }}</strong>
           </div>
           <div class="detail-row">
             <span>Recall</span>
-            <strong>{{ metrics.recall | percent: '1.2-2' }}</strong>
+            <strong>{{ modelMetrics.recall | percent: '1.2-2' }}</strong>
           </div>
           <div class="detail-row">
             <span>F1 Score</span>
-            <strong>{{ metrics.f1_score | percent: '1.2-2' }}</strong>
+            <strong>{{ modelMetrics.f1_score | percent: '1.2-2' }}</strong>
           </div>
         </div>
       </div>

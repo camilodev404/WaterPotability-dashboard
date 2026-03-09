@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 import { PredictionApiService } from '../../core/services/prediction-api.service';
-import { PredictResponse } from '../../core/models/predict.model';
+import { ModelName, PredictResponse } from '../../core/models/predict.model';
 import { ResultModalComponent } from '../../shared/components/result-modal/result-modal.component';
 
 @Component({
@@ -23,6 +23,7 @@ export class PredictPageComponent {
   predictionResult: PredictResponse | null = null;
 
   readonly form = this.fb.group({
+    model_name: ['decision_tree' as ModelName, [Validators.required]],
     ph: [null as number | null, [Validators.required, Validators.min(0), Validators.max(14)]],
     Hardness: [null as number | null, [Validators.required]],
     Solids: [null as number | null, [Validators.required]],
@@ -33,6 +34,10 @@ export class PredictPageComponent {
     Trihalomethanes: [null as number | null, [Validators.required]],
     Turbidity: [null as number | null, [Validators.required]],
   });
+
+  get selectedModelLabel(): string {
+    return this.form.value.model_name === 'neural_network' ? 'Red Neuronal' : 'Árbol de Decisión';
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -68,6 +73,7 @@ export class PredictPageComponent {
 
   handleClear(): void {
     this.form.reset();
+    this.form.patchValue({ model_name: 'decision_tree' });
     this.errorMessage = '';
     this.predictionResult = null;
   }

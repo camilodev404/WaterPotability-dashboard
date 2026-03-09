@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-import { MetricsResponse } from '../../core/models/predict.model';
+import { MetricsResponse, ModelMetrics } from '../../core/models/predict.model';
 import { PredictionApiService } from '../../core/services/prediction-api.service';
 
 @Component({
@@ -30,17 +30,21 @@ export class MetricsPageComponent implements OnInit {
     });
   }
 
-  get performanceBars(): Array<{ label: string; value: number }> {
-    if (!this.metrics) {
+  performanceBars(model: ModelMetrics): Array<{ label: string; value: number }> {
+    if (!model) {
       return [];
     }
 
     return [
-      { label: 'Accuracy', value: this.metrics.accuracy },
-      { label: 'Precision', value: this.metrics.precision },
-      { label: 'Recall', value: this.metrics.recall },
-      { label: 'F1 Score', value: this.metrics.f1_score },
+      { label: 'Accuracy', value: model.accuracy },
+      { label: 'Precision', value: model.precision },
+      { label: 'Recall', value: model.recall },
+      { label: 'F1 Score', value: model.f1_score },
     ];
+  }
+
+  modelLabel(modelName: string): string {
+    return modelName === 'neural_network' ? 'Red Neuronal' : 'Árbol de Decisión';
   }
 
   barX(index: number): number {
